@@ -1,0 +1,67 @@
+body {
+    /*para que el footer quede abajo*/
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url(/res/imgs/bar2.jpg);
+}
+
+.cabeza {
+    background-color: rgb(29, 29, 29);
+    padding-bottom: 16px;
+    box-shadow: 0 0px 10px 10px rgba(204, 204, 204, 0.8);
+}
+
+footer {
+    background-color: rgb(29, 29, 29);
+    text-align: center;
+    color: whitesmoke;
+    padding: 2em;
+    /* para que quede en el fondo cuando el tamaño del body es chico */
+    margin-top: auto;
+}
+
+#buscador-area {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+#buscador-area input {
+    display: inline;
+    max-width: 400px;
+    margin-right: 10px;
+    margin-bottom: 1em;
+}
+
+h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 3rem;
+    color: whitesmoke;
+    text-align: left;
+    font-size: xx-large
+}
+
+a:hover {
+    color: goldenrod
+}
+
+.trago {
+    margin: 1rem;
+    width: 18rem;
+    height: max-content;
+    background-color: rgb(233, 230, 230);
+    box-shadow: 0 0px 10px 10px rgba(204, 204, 204, 0.8);
+}
+
+#resultado {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 1em;
+}
+
+#err404 {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 1em;
+}

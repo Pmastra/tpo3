@@ -1,0 +1,27 @@
+.contenido {
+  margin: 2em;
+}
+
+.col-trago {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 300px;
+}
+
+.ingredientes h4 {
+  margin-left: 1em;
+}
+
+#listaIngredientes {
+  list-style-type: none;
+  margin-top: 32px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.ingrediente {
+  margin-bottom: 32px;
+  margin-right: 32px;
+  min-width: 120px;
+  box-shadow: 0 0px 10px 10px rgba(204, 204, 204, 0.8);
+}
