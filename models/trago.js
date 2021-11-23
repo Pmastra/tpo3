@@ -7,3 +7,5 @@ const tragoSchema = new Schema ({
 
 //crear modelo
 const Trago = mongoose.model('Trago', tragoSchema);
+
+module.exports = router;
