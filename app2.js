@@ -16,6 +16,7 @@ app.use(express.static(__dirname + "/public"));
 
 //Rutas web
 app.use('/', require('./router/rutasWeb'));
+app.use('/', require('./router/Tragos'));
 
 //Error 404
 app.use((req, res, next) => {
