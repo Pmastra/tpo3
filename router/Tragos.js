@@ -8,14 +8,9 @@ const Trago = require('../models/trago')
 router.get('/Tragos', async(req, res) => {
     try {
         const arrayTragosDB = await Trago.find();
-            //console.log(arrayTragosDB)
-            //console.log("hello")
-        //let objet
-        let json = JSON.stringify(arrayTragosDB);
-        //res.json(arrayTragosDB)
-        console.log("desde API: " + json)
+        let objeto = { drinks: arrayTragosDB }
+        let json = JSON.stringify(objeto);
         res.send(json);
-
     } catch (error) {
         console.log(error)
     }
