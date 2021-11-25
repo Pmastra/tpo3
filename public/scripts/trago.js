@@ -45,14 +45,25 @@ function mostrarTrago(trago) {
  * Muesta en la vista los ingredientes de un trago.
  */
 function mostarIngredientes(trago) {
+    var nombresDeIngredientes = [];
+    nombresDeIngredientes[0] = trago.strIngredient1;
+    nombresDeIngredientes[1] = trago.strIngredient2;
+    nombresDeIngredientes[2] = trago.strIngredient3;
+    nombresDeIngredientes[3] = trago.strIngredient4;
+    nombresDeIngredientes[4] = trago.strIngredient5;
+    nombresDeIngredientes[5] = trago.strIngredient6;
+
+
+    var maxIngredientes = 6;
+    var i = 0;
 
     // consulta a la api cada ingrediente del trago
-    trago.ingredientes.forEach(ingrediente => {
-        obtenerIngredientePorNombre(ingrediente,
+    while (i < maxIngredientes && nombresDeIngredientes[i] != null) {
+        obtenerIngredientePorNombre(nombresDeIngredientes[i],
             mostrarIngrediente,
             mostrarErrorIngrediente);
-    });
-
+        i++;
+    }
 }
 
 /**
