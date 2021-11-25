@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
@@ -6,11 +7,14 @@ const Trago = require('../models/trago')
 
 router.get('/Tragos', async(req, res) => {
     try {
-        const arrayTragosDB = await Trago.find()
+        const arrayTragosDB = await Trago.find();
             //console.log(arrayTragosDB)
             //console.log("hello")
-
-        res.json(arrayTragosDB)
+        //let objet
+        let json = JSON.stringify(arrayTragosDB);
+        //res.json(arrayTragosDB)
+        console.log("desde API: " + json)
+        res.send(json);
 
     } catch (error) {
         console.log(error)

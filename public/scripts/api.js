@@ -15,6 +15,7 @@ function consultarAPI(consulta, funcion, funcionError) {
     fetch(url + consulta)
         .then(resultado => resultado.json())
         .then(datos => {
+            console.log("desde web: " + datos);
             funcion(datos);
         })
         .catch(error => {

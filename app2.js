@@ -8,7 +8,9 @@ mongoose.connect('mongodb://localhost:27017/bar', { useNewUrlParser: true, useUn
     .then(() => console.log('conectado a mongodb'))
     .catch(e => console.log('error de conexión', e));
 
-app.use(express.json())
+// Middlewares
+app.use(express.json()); //Si recibimos un JSON, el modulo de express lo convierte automaticamente
+
     //seteamos que el view engine sea html
 app.set('view engine', 'html');
 
