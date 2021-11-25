@@ -1,21 +1,15 @@
-const { json } = require('express');
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const filePath = path.join(__dirname, '../');
 const Trago = require('../models/trago')
 
 router.get('/Tragos', async(req, res) => {
     try {
         let tragoBuscado = req.query.s;
-        
 
         let tragos = [];
         if (tragoBuscado == "") {
-            console.log("tragoBuscado is empty");
             tragos = await Trago.find();
         } else {
-            console.log("tragoBuscado = " + tragoBuscado);
             let tragosNormal = 
             await Trago.find({ "strDrink": { $regex: '.*' + tragoBuscado + '.*' }}).exec();
 
@@ -27,8 +21,6 @@ router.get('/Tragos', async(req, res) => {
 
             tragos = [...tragosNormal, ...tragosMayuscula, ...tragosMinuscula];
         }
-
-        console.log("tragos = " + tragos);
         
         let objeto = { drinks: tragos }
         let json = JSON.stringify(objeto);
