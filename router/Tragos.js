@@ -10,7 +10,7 @@ router.get('/Tragos', async(req, res) => {
             //console.log(arrayTragosDB)
             //console.log("hello")
 
-        res.send(JSON.stringify(arrayTragosDB))
+        res.json(arrayTragosDB)
 
     } catch (error) {
         console.log(error)

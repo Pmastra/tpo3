@@ -11,6 +11,7 @@ const obetenerIngredientePorId = 'search.php?i=';
  * @param funcionError funcion a ejecutar al obtener un error.
  */
 function consultarAPI(consulta, funcion, funcionError) {
+    console.log(consulta)
     fetch(url + consulta)
         .then(resultado => resultado.json())
         .then(datos => {

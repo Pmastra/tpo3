@@ -8,7 +8,8 @@ mongoose.connect('mongodb://localhost:27017/bar', { useNewUrlParser: true, useUn
     .then(() => console.log('conectado a mongodb'))
     .catch(e => console.log('error de conexión', e));
 
-//seteamos que el view engine sea html
+app.use(express.json())
+    //seteamos que el view engine sea html
 app.set('view engine', 'html');
 
 //direccionamiento a la carpeta publica
