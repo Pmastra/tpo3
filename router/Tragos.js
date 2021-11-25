@@ -4,12 +4,13 @@ const path = require('path');
 const filePath = path.join(__dirname, '../');
 const Trago = require('../models/trago')
 
-router.get('/BaseMongo', async (req, res) => {
-    try{
+router.get('/Tragos', async(req, res) => {
+    try {
         const arrayTragosDB = await Trago.find()
-        console.log(arrayTragosDB)
-        console.log("hello")
-        //res.sendFile(filePath + '/public/index.html')
+            //console.log(arrayTragosDB)
+            //console.log("hello")
+
+        res.send(JSON.stringify(arrayTragosDB))
 
     } catch (error) {
         console.log(error)

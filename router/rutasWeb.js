@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 //Necesitamos pasar el id como parametro para cualquier tipo de GET que comience con trago*
-router.get('/trago*', (req, res) => {
+router.get('/tragooo*', (req, res) => {
     res.sendFile(filePath + '/public/trago.html?id=')
 })
 

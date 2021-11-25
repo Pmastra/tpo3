@@ -45,33 +45,14 @@ function mostrarTrago(trago) {
  * Muesta en la vista los ingredientes de un trago.
  */
 function mostarIngredientes(trago) {
-    var nombresDeIngredientes = [];
-    nombresDeIngredientes[0] = trago.strIngredient1;
-    nombresDeIngredientes[1] = trago.strIngredient2;
-    nombresDeIngredientes[2] = trago.strIngredient3;
-    nombresDeIngredientes[3] = trago.strIngredient4;
-    nombresDeIngredientes[4] = trago.strIngredient5;
-    nombresDeIngredientes[5] = trago.strIngredient6;
-    nombresDeIngredientes[6] = trago.strIngredient7;
-    nombresDeIngredientes[7] = trago.strIngredient8;
-    nombresDeIngredientes[8] = trago.strIngredient9;
-    nombresDeIngredientes[9] = trago.strIngredient10;
-    nombresDeIngredientes[10] = trago.strIngredient11;
-    nombresDeIngredientes[11] = trago.strIngredient12;
-    nombresDeIngredientes[12] = trago.strIngredient13;
-    nombresDeIngredientes[13] = trago.strIngredient14;
-    nombresDeIngredientes[14] = trago.strIngredient15;
-
-    var maxIngredientes = 15;
-    var i = 0;
 
     // consulta a la api cada ingrediente del trago
-    while (i < maxIngredientes && nombresDeIngredientes[i] != null) {
-        obtenerIngredientePorNombre(nombresDeIngredientes[i],
-            mostrarIngrediente, 
+    trago.ingredientes.forEach(ingrediente => {
+        obtenerIngredientePorNombre(ingrediente,
+            mostrarIngrediente,
             mostrarErrorIngrediente);
-        i++;
-    }
+    });
+
 }
 
 /**
@@ -87,7 +68,7 @@ function mostrarIngrediente(ingrediente) {
  */
 function crearItemIngrediente(ingrediente) {
     let content =
-    `<div class="card ingrediente" style="width: 8rem;">
+        `<div class="card ingrediente" style="width: 8rem;">
         <image src="${ingrediente.image}" class="card-imagenTrago-top">
         <div class="card-body">
             <p class="card-text">${ingrediente.strIngredient}</p>   

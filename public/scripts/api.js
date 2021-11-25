@@ -1,5 +1,5 @@
-const url = 'https://www.thecocktaildb.com/api/json/v1/1/';
-const buscarTragoPorNombre = 'search.php?s=';
+const url = '//localhost:3000/';
+const buscarTragoPorNombre = 'Tragos?s=';
 const obtenerTragoPorId = 'lookup.php?i=';
 const tragoAleatorio = 'random.php';
 const obetenerIngredientePorId = 'search.php?i=';
