@@ -52,9 +52,17 @@ function mostarIngredientes(trago) {
     nombresDeIngredientes[3] = trago.strIngredient4;
     nombresDeIngredientes[4] = trago.strIngredient5;
     nombresDeIngredientes[5] = trago.strIngredient6;
+    nombresDeIngredientes[6] = trago.strIngredient7;
+    nombresDeIngredientes[7] = trago.strIngredient8;
+    nombresDeIngredientes[8] = trago.strIngredient9;
+    nombresDeIngredientes[9] = trago.strIngredient10;
+    nombresDeIngredientes[10] = trago.strIngredient11;
+    nombresDeIngredientes[11] = trago.strIngredient12;
+    nombresDeIngredientes[12] = trago.strIngredient13;
+    nombresDeIngredientes[13] = trago.strIngredient14;
+    nombresDeIngredientes[14] = trago.strIngredient15;
 
-
-    var maxIngredientes = 6;
+    var maxIngredientes = 15;
     var i = 0;
 
     // consulta a la api cada ingrediente del trago
