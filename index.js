@@ -14,11 +14,15 @@ app.use(express.json()); //Si recibimos un JSON, el modulo de express lo convier
     //seteamos que el view engine sea html
 app.set('view engine', 'html');
 
+//direccionamiento a todos los gets
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html')
+})
+
 //direccionamiento a la carpeta publica
 app.use(express.static(__dirname + "/public"));
 
 //Rutas web
-app.use('/', require('./router/rutasWeb'));
 app.use('/', require('./router/Tragos'));
 
 //Error 404
