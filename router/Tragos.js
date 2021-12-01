@@ -15,6 +15,7 @@ router.get('/Tragos', async(req, res) => {
             let tragosNormal =
                 await Trago.find({ "strDrink": { $regex: '.*' + tragoBuscado + '.*' } }).exec();
 
+            /*
             let tragosMayuscula =
                 await Trago.find({ "strDrink": { $regex: '.*' + tragoBuscado.toUpperCase() + '.*' } }).exec();
 
@@ -22,6 +23,8 @@ router.get('/Tragos', async(req, res) => {
                 await Trago.find({ "strDrink": { $regex: '.*' + tragoBuscado.toLowerCase() + '.*' } }).exec();
 
             tragos = [...tragosNormal, ...tragosMayuscula, ...tragosMinuscula];
+            */
+            tragos = tragosNormal;
         }
 
         let objeto = { drinks: tragos }
