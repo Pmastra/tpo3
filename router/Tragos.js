@@ -44,9 +44,9 @@ router.get('/trago', async(req, res) => {
         let idTrago = req.query.i;
 
         console.log("idTrago: " + idTrago);
-        
+
         let tragos =
-          await Trago.find({ "idDrink": idTrago }).exec();
+            await Trago.find({ "idDrink": idTrago }).exec();
         console.log("trago: " + tragos);
 
         let objeto = { drinks: tragos }
@@ -59,12 +59,20 @@ router.get('/trago', async(req, res) => {
 
 router.post('/', async(req, res) => {
     const body = req.body
-    try {
-        await Trago.create(body)
+    const idDrink = body.idDrink
+    let tragos =
+        await Trago.find({ "idDrink": idDrink }).exec();
+    if (tragos === undefined || tragos.length == 0) {
+        try {
+            await Trago.create(body)
 
-        res.redirect('/index.html')
-    } catch (error) {
-        console.log(error)
+            res.redirect('/index.html')
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        res.redirect('/404.html')
     }
+
 })
 module.exports = router;
