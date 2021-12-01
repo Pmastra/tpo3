@@ -1,6 +1,12 @@
 const express = require("express");
+const bodyParser = require('body-parser')
 const app = express();
 const port = 3000;
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+    // parse application/json
+app.use(bodyParser.json())
 
 //conexion a la base de datosss
 const mongoose = require('mongoose');
@@ -11,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/bar', { useNewUrlParser: true, useUn
 // Middlewares
 app.use(express.json()); //Si recibimos un JSON, el modulo de express lo convierte automaticamente
 
-    //seteamos que el view engine sea html
+//seteamos que el view engine sea html
 app.set('view engine', 'html');
 
 //direccionamiento a todos los gets
