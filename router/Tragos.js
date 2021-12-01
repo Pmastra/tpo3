@@ -58,28 +58,33 @@ router.get('/trago', async(req, res) => {
 })
 
 router.post('/', async(req, res) => {
-    const body = req.body
-    const idDrink = body.idDrink
+    const body = req.body;
 
-    let tragos =
-        await Trago.find({ "idDrink": idDrink }).exec();
-        
-    if (tragos === undefined || tragos.length == 0) {
-        try {
-            await Trago.create(body)
+    if (validarEntrada(body)) {
+        let tragos =
+            await Trago.find({ "idDrink": body.idDrink }).exec();
 
-            res.redirect('/index.html')
-        } catch (error) {
-            console.log(error)
+        // si el trago no existe lo inserta el la base de datos
+        if (tragos === undefined || tragos.length == 0) {
+            try {
+                await Trago.create(body);
+
+                res.redirect('/index.html');
+            } catch (error) {
+                console.log(error);
+            } 
+        } else {
+            res.redirect('/404.html');
         }
     } else {
-        res.redirect('/404.html')
+        res.redirect('/404.html');
     }
-
 });
 
 
 router.put('/trago', async(req, res) => { 
+
+    
     try {
         await Trago.updateOne(req.body);
 
@@ -89,5 +94,9 @@ router.put('/trago', async(req, res) => {
     }
 
 });
+
+function validarEntrada(bodyTrago) {
+    return bodyTrago !== undefined && Number.isInteger(bodyTrago.idDrink);
+}
 
 module.exports = router;
