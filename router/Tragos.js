@@ -37,7 +37,7 @@ router.get('/Tragos', async(req, res) => {
 
 router.get('/crear', (req, res) => {
     res.sendFile(filePath + '/public/crear.html')
-})
+});
 
 router.get('/trago', async(req, res) => {
     try {
@@ -60,8 +60,10 @@ router.get('/trago', async(req, res) => {
 router.post('/', async(req, res) => {
     const body = req.body
     const idDrink = body.idDrink
+
     let tragos =
         await Trago.find({ "idDrink": idDrink }).exec();
+        
     if (tragos === undefined || tragos.length == 0) {
         try {
             await Trago.create(body)
@@ -74,5 +76,18 @@ router.post('/', async(req, res) => {
         res.redirect('/404.html')
     }
 
-})
+});
+
+
+router.put('/trago', async(req, res) => { 
+    try {
+        await Trago.updateOne(req.body);
+
+        res.redirect('/index.html');
+    } catch (error) {
+        console.log(error)
+    }
+
+});
+
 module.exports = router;
