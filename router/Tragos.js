@@ -39,6 +39,24 @@ router.get('/crear', (req, res) => {
     res.sendFile(filePath + '/public/crear.html')
 })
 
+router.get('/trago', async(req, res) => {
+    try {
+        let idTrago = req.query.i;
+
+        console.log("idTrago: " + idTrago);
+        
+        let tragos =
+          await Trago.find({ "idDrink": idTrago }).exec();
+        console.log("trago: " + tragos);
+
+        let objeto = { drinks: tragos }
+        let json = JSON.stringify(objeto);
+        res.send(json);
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.post('/', async(req, res) => {
     const body = req.body
     try {

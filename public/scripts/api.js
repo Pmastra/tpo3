@@ -1,6 +1,6 @@
 const url = '//localhost:3000/';
 const buscarTragoPorNombre = 'Tragos?s=';
-const obtenerTragoPorId = 'lookup.php?i=';
+const obtenerTragoPorId = 'trago?i=';
 const tragoAleatorio = 'random.php';
 const obetenerIngredientePorId = 'search.php?i=';
 
