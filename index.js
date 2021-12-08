@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
 
 // Settings
@@ -6,7 +7,7 @@ app.set('port', process.env.PORT || 3000);
 
 // Middlewares
 app.use(express.json()); //Si recibimos un JSON, el modulo de express lo convierte automaticamente
-
+app.use(bodyParser.urlencoded({ extended: false }));
 //Rutas web
 app.use(express.static("public"));
 app.use('/api/tragos/', require('./router/tragos'));

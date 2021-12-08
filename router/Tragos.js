@@ -9,10 +9,10 @@ router.get('/', async(req, res) => {
         let tragoBuscado = req.query.s;
         let limit = Number(req.query.limit);
         let from = Number(req.query.from);
-        if(!limit) {
+        if (!limit) {
             limit = 10;
         }
-        if(!from) {
+        if (!from) {
             from = 0;
         }
 
@@ -40,7 +40,7 @@ router.get('/:idTrago', async(req, res) => {
 
         let trago =
             await Trago.find({ "idDrink": idTrago }).exec();
-    
+
         let objeto = { drinks: trago }
         let json = JSON.stringify(objeto);
         res.send(json);
@@ -55,18 +55,18 @@ router.post('/', async(req, res) => {
 
     let entradaValida = validarEntrada(body);
     let existe = await existeTrago(body.idDrink);
-    console.log("entrada " + body + " es valida? " + entradaValida);
+    //console.log("entrada " + body + " es valida? " + entradaValida);
     console.log("existe Trago? " + existe);
 
     if (entradaValida && !existe) {
         try {
             await Trago.create(body);
 
-            //res.redirect('/index.html');
-            res.sendStatus(200);
+            res.redirect('/index.html');
+            //res.sendStatus(200);
         } catch (error) {
             console.log(error);
-        } 
+        }
     } else {
         //res.redirect('/404.html');
         res.sendStatus(400);
@@ -77,13 +77,13 @@ router.post('/', async(req, res) => {
 /**
  * Verifica si existe un trago con el id parametrizado en la base de datos
  */
- async function existeTrago(idTrago) {
+async function existeTrago(idTrago) {
     let tragos =
-            await Trago.find({ "idDrink": idTrago }).exec();
+        await Trago.find({ "idDrink": idTrago }).exec();
     return (tragos && tragos.length > 0);
 }
 
-router.put('/:idTrago', async(req, res) => { 
+router.put('/:idTrago', async(req, res) => {
     const { idTrago } = req.params;
     console.log("idTrago: " + idTrago);
     try {
