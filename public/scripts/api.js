@@ -1,6 +1,6 @@
-const url = '//localhost:3000/';
+const url = '//localhost:3000/api/';
 const buscarTragoPorNombre = 'tragos?s=';
-const obtenerTragoPorId = 'trago?i=';
+const obtenerTragoPorId = 'tragos/';
 const tragoAleatorio = 'random.php';
 const obetenerIngredientePorId = 'search.php?i=';
 
