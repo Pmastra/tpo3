@@ -1,13 +1,42 @@
 const busqueda = document.getElementById("buscador");
 const divListaTragos = document.getElementById("resultado");
 
-buscarTrago("", mostrarListadoTragos)
+const btnAnterior = document.getElementById("btnAnterior");
+const btnSiguiente = document.getElementById("btnSiguiente");
+
+let limite = 10;
+let desde = 0;
+let cantidadDeTragosActual = 0;
+
+buscarTrago("", desde, limite, mostrarListadoTragos);
 
 busqueda.addEventListener('keyup', function(e) {
     if (e.key == "Enter") {
         buscarTragos();
     }
-})
+});
+
+btnAnterior.addEventListener("click", () => {
+    desde -= 9;
+    if(desde < 0) {
+        desde = 0;
+    } else {
+        limpiarResultados();
+        buscarTrago("", desde, limite, mostrarListadoTragos)
+    }
+});
+
+btnSiguiente.addEventListener("click", () => {
+    if (cantidadDeTragosActual == limite) {
+        desde += 9;
+        limpiarResultados();
+        buscarTrago("", desde, limite, mostrarListadoTragos)
+    }
+});
+
+function limpiarResultados() {
+    divListaTragos.innerHTML = "";
+}
 
 /**
  * Busca tragos a partir del valor en el input "busqueda" y los muestra en el div "resultado"
@@ -31,10 +60,12 @@ function crearListadoTrago(listaTragos) {
     let contenido = '';
     console.log(listaTragos)
     if (listaTragos != null) {
+        cantidadDeTragosActual = listaTragos.length;
         listaTragos.forEach(trago => {
             contenido += crearItemTrago(trago);
         });
     } else {
+        cantidadDeTragosActual = 0;
         contenido = crearItemTragoVacio();
     }
 

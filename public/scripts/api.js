@@ -26,8 +26,10 @@ function consultarAPI(consulta, funcion, funcionError) {
  * Obtiene de la API un objeto JSON con todos los tragos que coinciden 
  * con el nombre buscado.
  */
-function buscarTrago(nombre, funcion, funcionError) {
-    consultarAPI(buscarTragoPorNombre + nombre, (datos) => {
+ function buscarTrago(nombre, desde, maximo, funcion, funcionError) {
+    let consulta = buscarTragoPorNombre + nombre + "&limit=" + maximo + "&from=" + desde;
+    console.log("consulta: " + consulta);
+    consultarAPI(consulta, (datos) => {
         funcion(datos.drinks);
     }, funcionError);
 }
