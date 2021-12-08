@@ -41,7 +41,7 @@ and open the template in the editor.
                 <div class="col">
                     <input type="search" id="buscador" class="form-control">
                     <button type="button" id="btnBuscar" onclick="buscarTragos()" class="btn btn-primary">Buscar</button>
-                    
+
                     <a href="/crear.html">
                         <button type="button" id="btmCrear" href="/crear.html" class="btn btn-primary">Crear Trago</button>
                     </a>
@@ -51,6 +51,13 @@ and open the template in the editor.
     </div>
 
     <div id="resultado"></div>
+
+    <nav class="pagination">
+        <ul class="pagination">
+            <li id="previous" class="page-item"><a class="page-link" href="#">Anterior</a></li>
+            <li id="next" class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+        </ul>
+    </nav>
 
     <footer>
         Pagina version 2.0 / Creadores: Ledantes Braian - Mastracci Pablo / Todos los derechos reservados © 2021
