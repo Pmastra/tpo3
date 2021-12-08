@@ -17,8 +17,8 @@ busqueda.addEventListener('keyup', function(e) {
 });
 
 btnAnterior.addEventListener("click", () => {
-    desde -= 9;
-    if(desde < 0) {
+    desde -= 10;
+    if (desde < 0) {
         desde = 0;
     } else {
         limpiarResultados();
@@ -28,7 +28,7 @@ btnAnterior.addEventListener("click", () => {
 
 btnSiguiente.addEventListener("click", () => {
     if (cantidadDeTragosActual == limite) {
-        desde += 9;
+        desde += 10;
         limpiarResultados();
         buscarTrago("", desde, limite, mostrarListadoTragos)
     }
