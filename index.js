@@ -10,6 +10,7 @@ app.use(express.json()); //Si recibimos un JSON, el modulo de express lo convier
 //Rutas web
 app.use(express.static("public"));
 app.use('/api/tragos/', require('./router/tragos'));
+app.use('/api/ingredientes/', require('./router/ingredientes'));
 
 //Error 404
 app.use((req, res, next) => {

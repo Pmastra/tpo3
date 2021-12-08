@@ -1,8 +1,8 @@
-const url = '//localhost:3000/api/';
+const url = 'http://localhost:3000/api/';
 const buscarTragoPorNombre = 'tragos?s=';
 const obtenerTragoPorId = 'tragos/';
 const tragoAleatorio = 'random.php';
-const obetenerIngredientePorId = 'search.php?i=';
+const obetenerIngredientePorNombre = 'ingredientes/';
 
 /**
  * Realiza una consulta a la API.
@@ -15,7 +15,6 @@ function consultarAPI(consulta, funcion, funcionError) {
     fetch(url + consulta)
         .then(resultado => resultado.json())
         .then(datos => {
-            //console.log("desde web: " + datos);
             funcion(datos);
         })
         .catch(error => {
@@ -46,8 +45,7 @@ function obtenerTrago(idTrago, funcion, funcionError) {
  * Obtiene de la API un objeto JSON con el ingrediente buscado por su nombre.
  */
 function obtenerIngredientePorNombre(nombre, funcion, funcionError) {
-    consultarAPI(obetenerIngredientePorId + nombre, (datos) => {
-        datos.ingredients[0].image = `https://www.thecocktaildb.com/images/ingredients/${datos.ingredients[0].strIngredient}.png`
+    consultarAPI(obetenerIngredientePorNombre + nombre, (datos) => {
         funcion(datos.ingredients[0]);
     }, funcionError);
 }

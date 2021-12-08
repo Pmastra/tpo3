@@ -17,7 +17,10 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
     "mustache": "^4.2.0",
+    "node-fetch": "^2.6.6",
     "nodemon": "^2.0.15",
-    "pdfreader": "^1.2.13"
+    "pdfreader": "^1.2.13",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }
