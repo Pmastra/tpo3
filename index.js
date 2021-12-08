@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.use(express.static(__dirname + "/public"));
 
 //Rutas web
-app.use('/', require('./router/Tragos'));
+app.use('/', require('./router/tragos'));
 
 //Error 404
 app.use((req, res, next) => {

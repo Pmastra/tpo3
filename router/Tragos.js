@@ -4,7 +4,7 @@ const Trago = require('../models/trago')
 const path = require('path');
 const filePath = path.join(__dirname, '../');
 
-router.get('/Tragos', async(req, res) => {
+router.get('/tragos', async(req, res) => {
     try {
         let tragoBuscado = req.query.s;
 
@@ -31,7 +31,7 @@ router.get('/Tragos', async(req, res) => {
         let json = JSON.stringify(objeto);
         res.send(json);
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 })
 
@@ -43,11 +43,11 @@ router.get('/trago', async(req, res) => {
     try {
         let idTrago = req.query.i;
 
-        console.log("idTrago: " + idTrago);
+        //console.log("idTrago: " + idTrago);
 
         let tragos =
             await Trago.find({ "idDrink": idTrago }).exec();
-        console.log("trago: " + tragos);
+        //console.log("trago: " + tragos);
 
         let objeto = { drinks: tragos }
         let json = JSON.stringify(objeto);

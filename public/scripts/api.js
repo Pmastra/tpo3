@@ -1,5 +1,5 @@
 const url = '//localhost:3000/';
-const buscarTragoPorNombre = 'Tragos?s=';
+const buscarTragoPorNombre = 'tragos?s=';
 const obtenerTragoPorId = 'trago?i=';
 const tragoAleatorio = 'random.php';
 const obetenerIngredientePorId = 'search.php?i=';
@@ -15,7 +15,7 @@ function consultarAPI(consulta, funcion, funcionError) {
     fetch(url + consulta)
         .then(resultado => resultado.json())
         .then(datos => {
-            console.log("desde web: " + datos);
+            //console.log("desde web: " + datos);
             funcion(datos);
         })
         .catch(error => {
