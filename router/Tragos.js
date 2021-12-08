@@ -83,8 +83,6 @@ router.post('/', async(req, res) => {
 
 
 router.put('/trago', async(req, res) => { 
-
-    
     try {
         await Trago.updateOne(req.body);
 
