@@ -6,7 +6,7 @@ const filePath = path.join(__dirname, '../');
 
 router.get('/', async(req, res) => {
     try {
-        let tragoBuscado = req.query.s;
+        const tragoBuscado = req.query.s;
         
         if(esUnNumero(req.query.limit) & esUnNumero(req.query.from)){
             let limit = Number(req.query.limit);
@@ -18,7 +18,7 @@ router.get('/', async(req, res) => {
                 from = 0;
             }
     
-            let resultadoTragos = [];
+            const resultadoTragos = [];
             if (!tragoBuscado || tragoBuscado == "") {
                 resultadoTragos = await Trago.find().limit(limit).skip(from);
             } else {
@@ -27,9 +27,7 @@ router.get('/', async(req, res) => {
                     .limit(limit).skip(from).exec();
             }
     
-            let objeto = { drinks: resultadoTragos }
-            let json = JSON.stringify(objeto);
-            res.send(json);
+            res.send(JSON.stringify({ drinks: resultadoTragos }));
         } else {
             res.sendStatus(400);
         }
@@ -42,15 +40,13 @@ router.get('/', async(req, res) => {
 
 router.get('/:idTrago', async(req, res) => {
     try {
+        // TODO validar que sea un numero
         const { idTrago } = req.params;
-        console.log("idTrago: " + idTrago);
 
-        let trago =
+        const trago =
             await Trago.find({ "idDrink": idTrago }).exec();
 
-        let objeto = { drinks: trago }
-        let json = JSON.stringify(objeto);
-        res.send(json);
+        res.send(JSON.stringify({ drinks: trago }));
     } catch (error) {
         console.log(error)
     }
@@ -58,24 +54,21 @@ router.get('/:idTrago', async(req, res) => {
 
 router.post('/', async(req, res) => {
     const body = req.body;
-    console.log("post en /tragos con id: " + body.idDrink);
 
-    let entradaValida = validarEntrada(body);
-    let existe = await existeTrago(body.idDrink);
-    //console.log("entrada " + body + " es valida? " + entradaValida);
-    console.log("existe Trago? " + existe);
+    const entradaValida = validarEntrada(body);
+    const existe = await existeTrago(body.idDrink);
 
     if (entradaValida && !existe) {
         try {
             await Trago.create(body);
 
-            res.redirect('/index.html');
-            //res.sendStatus(200);
+            // TODO tiene que encargarse el frontend de resolver la redireccion
+            //res.redirect('/index.html');
+            res.sendStatus(200);
         } catch (error) {
-            console.log(error);
+            res.sendStatus(500);
         }
     } else {
-        //res.redirect('/404.html');
         res.sendStatus(400);
     }
 
@@ -91,19 +84,21 @@ async function existeTrago(idTrago) {
 }
 
 router.put('/:idTrago', async(req, res) => {
+    // TODO verificar que el trago exista, se puede obenerlo y luego actualizarlo
     const { idTrago } = req.params;
-    console.log("idTrago: " + idTrago);
     try {
         await Trago.updateOne(req.body);
 
+        // TODO tiene que encargarse el frontend de resolver la redireccion
         //res.redirect('/index.html');
         res.sendStatus(200);
     } catch (error) {
-        console.log(error)
+        res.sendStatus(500);
     }
 
 });
 
+// TODO poner un nombre mas representativo
 function validarEntrada(bodyTrago) {
     return bodyTrago !== undefined && esUnNumero(bodyTrago.idDrink);
 }
