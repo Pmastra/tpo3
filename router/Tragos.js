@@ -7,27 +7,34 @@ const filePath = path.join(__dirname, '../');
 router.get('/', async(req, res) => {
     try {
         let tragoBuscado = req.query.s;
-        let limit = Number(req.query.limit);
-        let from = Number(req.query.from);
-        if (!limit) {
-            limit = 10;
-        }
-        if (!from) {
-            from = 0;
-        }
-
-        let resultadoTragos = [];
-        if (!tragoBuscado || tragoBuscado == "") {
-            resultadoTragos = await Trago.find().limit(limit).skip(from);
+        
+        if(esUnNumero(req.query.limit) & esUnNumero(req.query.from)){
+            let limit = Number(req.query.limit);
+            let from = Number(req.query.from);
+            if (!limit) {
+                limit = 10;
+            }
+            if (!from) {
+                from = 0;
+            }
+    
+            let resultadoTragos = [];
+            if (!tragoBuscado || tragoBuscado == "") {
+                resultadoTragos = await Trago.find().limit(limit).skip(from);
+            } else {
+                resultadoTragos =
+                    await Trago.find({ "strDrink": { $regex: '.*' + tragoBuscado + '.*' } })
+                    .limit(limit).skip(from).exec();
+            }
+    
+            let objeto = { drinks: resultadoTragos }
+            let json = JSON.stringify(objeto);
+            res.send(json);
         } else {
-            resultadoTragos =
-                await Trago.find({ "strDrink": { $regex: '.*' + tragoBuscado + '.*' } })
-                .limit(limit).skip(from).exec();
+            res.sendStatus(400);
         }
-
-        let objeto = { drinks: resultadoTragos }
-        let json = JSON.stringify(objeto);
-        res.send(json);
+        
+        
     } catch (error) {
         console.log(error)
     }
