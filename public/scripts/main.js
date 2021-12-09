@@ -8,7 +8,7 @@ let limite = 10;
 let desde = 0;
 let cantidadDeTragosActual = 0;
 
-buscarTrago("", desde, limite, mostrarListadoTragos);
+buscarTragos();
 
 busqueda.addEventListener('keyup', function(e) {
     if (e.key == "Enter") {
@@ -42,7 +42,8 @@ function limpiarResultados() {
  * Busca tragos a partir del valor en el input "busqueda" y los muestra en el div "resultado"
  */
 function buscarTragos() {
-    buscarTrago(busqueda.value, mostrarListadoTragos);
+    desde = 0;
+    buscarTrago(busqueda.value, desde, limite, mostrarListadoTragos);
 }
 
 /**
