@@ -18,7 +18,7 @@ router.get('/', async(req, res) => {
                 from = 0;
             }
     
-            const resultadoTragos = [];
+            let resultadoTragos = [];
             if (!tragoBuscado || tragoBuscado == "") {
                 resultadoTragos = await Trago.find().limit(limit).skip(from);
             } else {
@@ -78,7 +78,7 @@ router.post('/', async(req, res) => {
  * Verifica si existe un trago con el id parametrizado en la base de datos
  */
 async function existeTrago(idTrago) {
-    let tragos =
+    const tragos =
         await Trago.find({ "idDrink": idTrago }).exec();
     return (tragos && tragos.length > 0);
 }
